@@ -12,7 +12,11 @@ n = length(A);
 L = eye(n, n);
 U = A;
 y = b;
-for lock=1:n-1
+for lock=1:n-1 
+% Why 3 iterates required lock, row, and col? 
+% lock locks the top-most row in place
+% row moves along rows below the locked-row
+% col moves along columns
     for row = lock+1:n
         mult = U(row, lock)/U(lock, lock); % Common row factor
         U(row,lock) = 0;
